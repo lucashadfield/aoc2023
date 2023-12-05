@@ -46,12 +46,13 @@ fn text_to_digits(line: &str) -> String {
 }
 
 pub fn part_one(input: &str) -> Option<u32> {
-    Some(input.split('\n').map(parse_line).sum::<u32>())
+    Some(input.trim().split('\n').map(parse_line).sum::<u32>())
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
     Some(
         input
+            .trim()
             .split('\n')
             .map(text_to_digits)
             .map(|s| parse_line(s.as_str()))
