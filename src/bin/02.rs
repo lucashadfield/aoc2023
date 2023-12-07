@@ -35,7 +35,7 @@ fn calculate_game_power(game: &str) -> u32 {
 
     draws
         .split(|s| s == ',' || s == ';') // split by count and color
-        .map(vectorise_draw) // convert to tuple
+        .map(vectorise_draw) // convert to vector
         .fold(vec![0, 0, 0], |mut acc, v| {
             acc[0] = acc[0].max(v[0]);
             acc[1] = acc[1].max(v[1]);
@@ -74,7 +74,7 @@ pub fn part_two(input: &str) -> Option<u32> {
             .trim()
             .split('\n') // one item per game
             .map(calculate_game_power) // filter to just game IDs that are valid
-            .sum::<u32>(), // sum the valid game IDs
+            .sum::<u32>(), // sum the game powers
     )
 }
 
