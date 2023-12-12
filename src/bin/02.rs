@@ -1,5 +1,4 @@
 use phf::phf_map;
-use std::collections::HashMap;
 advent_of_code::solution!(2);
 
 static GAME_CONFIG: phf::Map<&'static str, u32> = phf_map! {
