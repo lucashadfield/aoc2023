@@ -8,14 +8,6 @@ fn next_value(values: &Vec<i32>) -> i32 {
     }
 }
 
-fn previous_value(values: &Vec<i32>) -> i32 {
-    match values.windows(2).map(|w| w[1] - w[0]).collect::<Vec<i32>>() {
-        diffs if diffs.iter().all(|v| *v == 0) => *values.iter().next().unwrap(),
-        diffs if true => values.iter().next().unwrap() - previous_value(&diffs),
-        _ => panic!(),
-    }
-}
-
 pub fn part_one(input: &str) -> Option<i32> {
     Some(
         input
@@ -39,9 +31,10 @@ pub fn part_two(input: &str) -> Option<i32> {
             .map(|line| {
                 line.split(' ')
                     .map(|v| v.parse::<i32>().unwrap())
+                    .rev()
                     .collect::<Vec<i32>>()
             })
-            .map(|values| previous_value(&values))
+            .map(|values| next_value(&values))
             .sum(),
     )
 }
